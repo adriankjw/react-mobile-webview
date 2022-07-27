@@ -9,9 +9,9 @@ declare global {
 
 function App() {
   var userAgent = window.navigator.userAgent.toLowerCase(),
-  safari = /safari/.test(userAgent),
-  ios = /iphone|ipod|ipad/.test(userAgent);
-  
+    safari = /safari/.test(userAgent),
+    ios = /iphone|ipod|ipad/.test(userAgent);
+
   const [fullName, setFullName] = useState("fullName");
   const [documentNumber, setDocumentNumber] = useState("documentNumber");
   const [ref_id, setRefId] = useState("ref_id");
@@ -28,77 +28,105 @@ function App() {
     message = message.replace(/\\/g, "");
     const obj = JSON.parse(message, function (key, value) {
 
-        if (key === "fullName") {
-          setFullName(value);
-        } else if (key === "documentNumber") {
-          setDocumentNumber(value);
-        } else if (key === "ref_id") {
-          setRefId(value);
-        } else if (key === "id_type") {
-          setIdType(value);
-        } else if (key === "address") {
-          setAddress(value);
-        } else if (key === "gender") {
-          setGender(value);
+      if (key === "fullName") {
+        setFullName(value);
+      } else if (key === "documentNumber") {
+        setDocumentNumber(value);
+      } else if (key === "ref_id") {
+        setRefId(value);
+      } else if (key === "id_type") {
+        setIdType(value);
+      } else if (key === "address") {
+        setAddress(value);
+      } else if (key === "gender") {
+        setGender(value);
 
-        } else if (key === "dateOfBirth") {
-          setDateOfBirth(value);
-        } else if (key === "placeOfBirth") {
-          setPlaceOfBirth(value);
-        } else if (key === "frontImg") {
-          setFrontImg(value);
-        } else if (key === "backImg") {
-          setBackImg(value);
-        } else if (key === "faceImg") {
-          setFaceImg(value);
-        }
+      } else if (key === "dateOfBirth") {
+        setDateOfBirth(value);
+      } else if (key === "placeOfBirth") {
+        setPlaceOfBirth(value);
+      } else if (key === "frontImg") {
+        setFrontImg(value);
+      } else if (key === "backImg") {
+        setBackImg(value);
+      } else if (key === "faceImg") {
+        setFaceImg(value);
+      }
     });
   }
 
   return (
     <Fragment>
-    <div className="centered-div">
+      <div className="centered-div">
         Maxis Microsite App Integration Sample4
-    </div>
-    <div className="centered-div">
-      <Button title='MyKad NRIC' onClick={() => {
-        if (ios) {
-          eval("NativeApp.postMessage({'action': 'openEKycNRIC'});")
-        } else {
-          eval("Android.openEKycNRIC();")
-        }
-      }} >
-      </Button>
-      <Button title='MyKad Tentera' onClick={() => {
-        if (ios) {
-          eval("NativeApp.postMessage({'action': 'openEKycTentera'});")
-        } else {
-          eval("Android.openEKycTentera();")
-        }
-      }} >
-      </Button>
-      <Button title='Passport' onClick={() => {
-        if (ios) {
-          eval("NativeApp.postMessage({'action': 'openEKycPassport'});")
-        } else {
-          eval("Android.openEKycPassport();")
-        }
-      }} >
-      </Button>
-      <Button title='Scan Face NRIC' onClick={() => {
-        if (ios) {
-          eval("NativeApp.postMessage({'action': 'openEKycFace'});")
-        } else {
-          eval("Android.openEKycFace();")
-        }
-      }} >
-      </Button>
-    </div>
-    <div className="centered-div">
-      {fullName}
-      <br />
-      {documentNumber}
-    </div>
+      </div>
+      <div className="centered-div">
+        <Button title='MyKad NRIC' onClick={() => {
+          if (ios) {
+            eval("NativeApp.postMessage({'action': 'openEKycNRIC'});")
+          } else {
+            eval("Android.openEKycNRIC();")
+          }
+        }} >
+        </Button>
+        <Button title='MyKad Tentera' onClick={() => {
+          if (ios) {
+            eval("NativeApp.postMessage({'action': 'openEKycTentera'});")
+          } else {
+            eval("Android.openEKycTentera();")
+          }
+        }} >
+        </Button>
+        <Button title='Passport' onClick={() => {
+          if (ios) {
+            eval("NativeApp.postMessage({'action': 'openEKycPassport'});")
+          } else {
+            eval("Android.openEKycPassport();")
+          }
+        }} >
+        </Button>
+        <Button title='Scan Face NRIC' onClick={() => {
+          if (ios) {
+            eval("NativeApp.postMessage({'action': 'openEKycFace'});")
+          } else {
+            eval("Android.openEKycFace();")
+          }
+        }} >
+        </Button>
+      </div>
+      <div className="centered-div">
+        Full name : {fullName}
+      </div>
+      <div className="centered-div">
+        Document number : {documentNumber}
+      </div>
+      <div className="centered-div">
+        Ref ID : {ref_id}
+      </div>
+      <div className="centered-div">
+        ID Type : {id_type}
+      </div>
+      <div className="centered-div">
+        Address : {address}
+      </div>
+      <div className="centered-div">
+        Gender : {gender}
+      </div>
+      <div className="centered-div">
+        Date of birth : {dateOfBirth}
+      </div>
+      <div className="centered-div">
+        Place of birth : {placeOfBirth}
+      </div>
+      <div className="centered-div">
+        Front img : <img src={frontImg}></img>
+      </div>
+      <div className="centered-div">
+        Back img : <img src={backImg}></img>
+      </div>
+      <div className="centered-div">
+        Face img : <img src={faceImg}></img>
+      </div>
     </Fragment>
   );
 }
